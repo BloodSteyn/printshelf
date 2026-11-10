@@ -69,6 +69,8 @@ input { user-select: text; }
 .seg button:hover:not(.on) { color: var(--text); }
 .crumbs { flex-basis: 100%; display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; min-height: 20px; flex-wrap: wrap; }
 .crumbs b { color: var(--text); font-weight: 600; }
+.btn-x { display: grid; place-items: center; margin: 0 -4px 0 2px; padding: 2px; border-radius: 50%; opacity: .75; }
+.btn-x:hover { opacity: 1; background: rgba(255, 255, 255, .14); }
 .chip { display: inline-flex; align-items: center; gap: 4px; background: var(--raised); border: 1px solid var(--line); border-radius: 20px; padding: 1px 8px; font-size: 11px; color: var(--muted); white-space: nowrap; }
 .chip.accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
 .chip.violet { background: rgba(143, 124, 247, .18); border-color: transparent; color: #b5a8ff; }

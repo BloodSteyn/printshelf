@@ -213,7 +213,8 @@ function renderToolbar() {
       if (!S.semantic && !(S.settings.ai && S.settings.ai.embedModel)) return toast('Pick an embedding model in Settings → Local AI to search by meaning.', 'error');
       S.semantic = !S.semantic; render();
     } }, icon('spark', 14), 'AI'),
-    h('button', { class: 'btn' + (f.tags.length ? ' on' : ''), onClick: (e) => tagMenu(e.currentTarget) }, icon('tag', 14), 'Tags'),
+    h('button', { class: 'btn' + (f.tags.length ? ' on' : ''), onClick: (e) => tagMenu(e.currentTarget) }, icon('tag', 14), f.tags.length ? `Tags · ${f.tags.length}` : 'Tags',
+      f.tags.length ? h('span', { class: 'btn-x', title: 'Clear tag filter', onClick: (e) => { e.stopPropagation(); document.querySelectorAll('.popover').forEach((p) => p.remove()); f.tags = []; render(); } }, icon('x', 12)) : null),
     fmtSel, printSel, sortSel,
     f.dir ? h('button', { class: 'btn' + (f.flat ? ' on' : ''), title: 'Flat view shows everything beneath this folder', onClick: () => { f.flat = !f.flat; render(); } }, 'Flat view') : null,
     seg([['s', 'S', 'Small cards'], ['m', 'M', 'Medium cards'], ['l', 'L', 'Large cards']], S.cardSize, (v) => { S.cardSize = v; localStorage.cardSize = v; }),
@@ -223,8 +224,17 @@ function renderToolbar() {
 
 function tagMenu(anchor) {
   const list = h('div');
+  const head = h('div');
+  // Tags already ticked when the menu opens are listed first, so they can be
+  // unticked without scrolling. The order is fixed while the menu stays open.
+  const pinned = new Set(S.filter.tags);
   const draw = (q) => {
-    list.replaceChildren(...S.tags.filter((t) => !q || t.name.toLowerCase().includes(q)).slice(0, 200).map((t) =>
+    const n = S.filter.tags.length;
+    head.replaceChildren(...(n ? [h('button', { class: 'menu-item danger', onClick: () => { S.filter.tags = []; render(); draw(q); } },
+      icon('x', 13), n === 1 ? 'Clear tag filter' : `Clear ${n} tag filters`), h('div', { class: 'sep' })] : []));
+    const shown = S.tags.filter((t) => !q || t.name.toLowerCase().includes(q));
+    const ordered = [...shown.filter((t) => pinned.has(t.name)), ...shown.filter((t) => !pinned.has(t.name))];
+    list.replaceChildren(...ordered.slice(0, 200).map((t) =>
       h('button', { class: 'menu-item' + (S.filter.tags.includes(t.name) ? ' on' : ''), onClick: () => {
         const i = S.filter.tags.indexOf(t.name);
         if (i < 0) S.filter.tags.push(t.name); else S.filter.tags.splice(i, 1);
@@ -234,7 +244,7 @@ function tagMenu(anchor) {
   };
   const input = h('input', { class: 'input', placeholder: 'Filter tags…', onInput: (e) => draw(e.target.value.toLowerCase()) });
   draw('');
-  popover(anchor, h('div', { style: { width: '240px' } }, input, list));
+  popover(anchor, h('div', { style: { width: '240px' } }, input, head, list));
   input.focus();
 }
 
