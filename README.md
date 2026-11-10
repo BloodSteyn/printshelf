@@ -4,6 +4,12 @@ A local-first library for downloaded 3D-printing models, with an MCP server so
 agents can help catalogue and import. Everything stays on this computer; source
 folders are indexed in place and a scan never renames, moves or uploads a file.
 
+![Library grid with the detail panel open](docs/screenshots/library.png)
+
+| 3D viewer | Duplicate finder |
+| --- | --- |
+| ![3D viewer showing a multi-part 3MF project](docs/screenshots/viewer.png) | ![Duplicate finder listing exact copies and identical geometry](docs/screenshots/duplicates.png) |
+
 ## Run
 
     npm install
