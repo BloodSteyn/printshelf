@@ -1,0 +1,24 @@
+{
+  "name": "printshelf",
+  "productName": "Printshelf",
+  "version": "0.1.0",
+  "description": "Local-first library for downloaded 3D printing models, with an MCP server for AI agents.",
+  "main": "src/main/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "mcp": "node mcp/server.js",
+    "samples": "node scripts/make-samples.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "7zip-bin": "^5.2.0",
+    "fflate": "^0.8.3",
+    "three": "^0.187.0",
+    "yauzl": "^3.4.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "electron": "^45.2.3"
+  }
+}

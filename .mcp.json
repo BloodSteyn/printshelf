@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "printshelf": {
+      "command": "node",
+      "args": [
+        "mcp/server.js"
+      ]
+    }
+  }
+}

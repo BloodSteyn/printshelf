@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Printshelf</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; connect-src 'self' blob: data:">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": { "three": "/vendor/three/build/three.module.js", "three/addons/": "/vendor/three/examples/jsm/", "fflate": "/vendor/fflate/esm/browser.js" } }
+</script>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar"></aside>
+  <main id="main">
+    <header id="toolbar"></header>
+    <section id="content"></section>
+  </main>
+  <aside id="detail" hidden></aside>
+</div>
+<div id="viewer" hidden></div>
+<div id="dropzone" hidden><div>Drop a folder to add it as a source, or files to import them</div></div>
+<div id="toasts"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
