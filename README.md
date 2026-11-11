@@ -75,3 +75,7 @@ find_duplicates, ai_status, ai_tag. Agents cannot delete or move existing files.
 
 Data (database, thumbnails) lives in `%APPDATA%/Printshelf`. Set
 `PRINTSHELF_DATA` to use another folder.
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).

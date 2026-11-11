@@ -2,6 +2,7 @@
   "name": "printshelf",
   "productName": "Printshelf",
   "version": "0.1.0",
+  "license": "MIT",
   "description": "Local-first library for downloaded 3D printing models, with an MCP server for AI agents.",
   "main": "src/main/main.js",
   "private": true,
